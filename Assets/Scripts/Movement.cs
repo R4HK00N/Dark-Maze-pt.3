@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float bobbingAmount = 0.05f; // How much bobbing effect is applied
+    public float bobbingMultiplier = 1f;
 
     private float timer = 0f;
     private bool isWalking;
@@ -32,7 +33,7 @@ public class Movement : MonoBehaviour
         // Handle movement input
         HandleMovement();
 
-        isWalking = (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D));
+        isWalking = (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) && Camera.main.transform.localPosition.y != 0f);
 
         isSprinting = (isWalking && Input.GetKey(KeyCode.LeftShift));
 
@@ -54,14 +55,14 @@ public class Movement : MonoBehaviour
 
     private void ApplyBobbing()
     {
-        float currentBobbingAmount = isSprinting ? bobbingAmount * 2 : bobbingAmount;
+        float currentBobbingAmount = isSprinting ? bobbingAmount * bobbingMultiplier : bobbingAmount;
         float currentBobbingSpeed = isSprinting ? sprintSpeed : walkSpeed;
 
         // Bobbing based on the movement timer
-        timer += Time.deltaTime * currentBobbingSpeed;
+        timer += Time.deltaTime * currentBobbingSpeed * bobbingMultiplier;
 
         // Apply the bobbing effect
-        float bobbingPositionY = Mathf.Sin(timer) * currentBobbingAmount;
+        float bobbingPositionY = Mathf.Sin(timer) * currentBobbingAmount * bobbingMultiplier;
 
         // Adjust the local position of the camera for bobbing
         Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, bobbingPositionY, Camera.main.transform.localPosition.z);
