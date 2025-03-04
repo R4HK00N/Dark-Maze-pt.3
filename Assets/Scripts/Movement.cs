@@ -16,9 +16,15 @@ public class Movement : MonoBehaviour
     public float mouseSensitivity = 2f; // Camera mouse sensitivity
     public Transform orientation; // The orientation transform to rotate the camera
 
+    public AudioSource walkingSFX;
+    public float soundEffectDelay;
+
     private Rigidbody rb;
     private float currentSpeed;
     private float xRotation = 0f;
+
+    public bool walkinSoundactive;
+
 
     private void Start()
     {
@@ -30,7 +36,6 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        // Handle movement input
         HandleMovement();
 
         isWalking = (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) && Camera.main.transform.localPosition.y != 0f);
@@ -44,13 +49,29 @@ public class Movement : MonoBehaviour
         if (isWalking)
         {
             ApplyBobbing();
+            if (!walkinSoundactive)
+            {
+                walkinSoundactive = true;
+                walkingSFX.Play();
+                StartCoroutine(SoundEffectDelay(soundEffectDelay));
+            }
         }
         else
         {
             // Reset bobbing when not moving
             timer = 0f;
             Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, 0f, Camera.main.transform.localPosition.z);
+
+            walkinSoundactive = false;
+            walkingSFX.Pause();
         }
+    }
+
+    IEnumerator SoundEffectDelay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        walkinSoundactive = false;
+        walkingSFX.Stop();
     }
 
     private void ApplyBobbing()
@@ -84,10 +105,12 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             currentSpeed = sprintSpeed;
+            walkingSFX.pitch = 1f;
         }
         else
         {
             currentSpeed = walkSpeed;
+            walkingSFX.pitch = 0.65f;
         }
 
         // Apply movement using Rigidbody
