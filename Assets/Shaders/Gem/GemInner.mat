@@ -61,7 +61,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
-    - _Alpha: 0.98
+    - _Alpha: 0
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 0
     - _AlphaSrcBlend: 1
@@ -117,9 +117,10 @@ Material:
     - _ZWrite: 1
     - _test: -1.71
     m_Colors:
-    - _Color: {r: 0, g: 0.4152761, b: 1, a: 0}
+    - _Color: {r: 0.000032248237, g: 0.000049026345, b: 0.00026294743, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SecondaireColor: {r: 0, g: 0.08419552, b: 0.4301988, a: 0}
-    - _ShimmerColor: {r: 335.25925, g: 700.30225, b: 766.9961, a: 0}
+    - _SecondaireColor: {r: 0.0039202143, g: 0.016490482, b: 0.054201286, a: 0}
+    - _ShimmerColor: {r: 0.00031972813, g: 0.00066786027, b: 0.0007314645, a: 0}
+    - _ShimmerColor2: {r: 0, g: 0.003660066, b: 0.026887422, a: 0}
   m_BuildTextureStacks: []

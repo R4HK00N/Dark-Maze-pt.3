@@ -120,5 +120,6 @@ Material:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _SecondaireColor: {r: 0, g: 0.08419552, b: 0.4301988, a: 0}
-    - _ShimmerColor: {r: 335.25912, g: 700.302, b: 766.9958, a: 0}
+    - _ShimmerColor: {r: 0.00031972802, g: 0.00066786003, b: 0.0007314642, a: 0}
+    - _ShimmerColor2: {r: 0, g: 38.68873, b: 126.5072, a: 0}
   m_BuildTextureStacks: []
