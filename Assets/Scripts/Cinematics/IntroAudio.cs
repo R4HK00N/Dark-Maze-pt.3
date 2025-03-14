@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class IntroAudio : MonoBehaviour
 {
-    // Array of audio clips
-    public AudioClip[] audioClips;
+    public AudioClip[] playerAudioClips;
+    public AudioClip[] enemyAudioClips;
 
-    // Reference to the AudioSource
-    public AudioSource audioSource;
-
-    void Start()
+    public AudioSource playerAudioSource;
+    public AudioSource enemyAudioSource;
+    public AudioSource gateAudioSource;
+    public void SwitchPlayerAudioClip(int index)
     {
-        // Get the AudioSource component attached to this GameObject
-        audioSource = GetComponent<AudioSource>();
+        playerAudioSource.clip = playerAudioClips[index];
+        playerAudioSource.Play();
     }
-
-    // Function to switch the clip by passing an integer index
-    public void SwitchAudioClip(int index)
+    public void SwitchEnemyAudioClip(int index)
     {
-        // Check if the index is valid
-        if (index >= 0 && index < audioClips.Length)
-        {
-            // Switch the audio clip
-            audioSource.clip = audioClips[index];
-            audioSource.Play(); // Optionally play the new clip immediately
-        }
-        else
-        {
-            Debug.LogWarning("Invalid index. Please provide a valid index.");
-        }
+        enemyAudioSource.clip = enemyAudioClips[index];
+        enemyAudioSource.Play();
     }
-
+    public void PlayGateSound()
+    {
+        gateAudioSource.Play();
+    }
+    public void StopPlayerAudio()
+    {
+        playerAudioSource.Stop();
+    }
+    public void StopEnemyAudio()
+    {
+        enemyAudioSource.Stop();
+    }
 }
