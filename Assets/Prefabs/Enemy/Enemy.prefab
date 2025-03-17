@@ -458,6 +458,9 @@ MonoBehaviour:
   pitchDelay: 1
   minPitch: 0.8
   maxPitch: 1.2
+  followDistance: 18
+  wanderRange: 20
+  wanderInterval: 7
 --- !u!195 &1038172958349963697
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -501,7 +504,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 24.017431
-  MaxDistance: 24.017433
+  MaxDistance: 24.257605
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0

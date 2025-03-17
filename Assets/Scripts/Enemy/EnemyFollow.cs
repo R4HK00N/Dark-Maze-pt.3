@@ -18,6 +18,12 @@ public class EnemyFollow : MonoBehaviour
     public float minPitch;
     public float maxPitch;
 
+    public float followDistance = 10f;
+    public float wanderRange = 20f;
+    public float wanderInterval = 3f;
+
+    private float nextWanderTime;
+
     Shake shake;
 
     private void Awake()
@@ -26,10 +32,26 @@ public class EnemyFollow : MonoBehaviour
     }
     void Update()
     {
+        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
         StartCoroutine(PitchChange(pitchDelay));
         if (!inJumpscareRange)
-            enemy.SetDestination(player.transform.position);
+        {
+            if (distanceToPlayer <= followDistance)
+            {
+                // Follow the player if within range
+                enemy.SetDestination(player.transform.position);
+            }
+            else
+            {
+                // If player is not near, wander randomly
+                if (Time.time >= nextWanderTime)
+                {
+                    Wander();
+                    nextWanderTime = Time.time + wanderInterval;
+                }
+            }
+        }
 
         inJumpscareRange = Physics.CheckSphere(transform.position, jumpscareRange, whatIsPlayer);
 
@@ -49,6 +71,30 @@ public class EnemyFollow : MonoBehaviour
 
             //alles voor jumpscare trigger
         }
+    }
+    void Wander()
+    {
+        // Generate a random position within a defined range from the enemy's current position
+        Vector3 randomPosition = RandomNavMeshLocation(wanderRange);
+
+        // Set the NavMeshAgent destination to this random position
+        enemy.SetDestination(randomPosition);
+    }
+
+    Vector3 RandomNavMeshLocation(float range)
+    {
+        // Generate a random point within a specified range on the NavMesh
+        Vector3 randomDirection = Random.insideUnitSphere * range;
+        randomDirection += transform.position;
+        NavMeshHit hit;
+
+        // Find the closest point on the NavMesh
+        if (NavMesh.SamplePosition(randomDirection, out hit, range, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+
+        return transform.position;  // Fallback to the current position if no valid NavMesh point is found
     }
 
     IEnumerator JumpscareEnd(float time)
