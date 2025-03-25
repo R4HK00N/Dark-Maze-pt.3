@@ -5,12 +5,13 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float bobbingAmount = 0.05f; // How much bobbing effect is applied
-    public float bobbingMultiplier = 1f;
+    public float bobbingSprintMultiplier = 1f;
 
     private float timer = 0f;
     private bool isWalking;
     private bool isSprinting;
 
+    public float bobbingSpeedMultiplier;
     public float walkSpeed = 5f; // Speed when walking
     public float sprintSpeed = 10f; // Speed when sprinting
     public float mouseSensitivity = 2f; // Camera mouse sensitivity
@@ -76,14 +77,14 @@ public class Movement : MonoBehaviour
 
     private void ApplyBobbing()
     {
-        float currentBobbingAmount = isSprinting ? bobbingAmount * bobbingMultiplier : bobbingAmount;
-        float currentBobbingSpeed = isSprinting ? sprintSpeed : walkSpeed;
+        float currentBobbingAmount = isSprinting ? bobbingAmount * bobbingSprintMultiplier : bobbingAmount;
+        float currentBobbingSpeed = isSprinting ? sprintSpeed * bobbingSpeedMultiplier : walkSpeed * bobbingSpeedMultiplier;
 
         // Bobbing based on the movement timer
-        timer += Time.deltaTime * currentBobbingSpeed * bobbingMultiplier;
+        timer += Time.deltaTime * currentBobbingSpeed * bobbingSprintMultiplier;
 
         // Apply the bobbing effect
-        float bobbingPositionY = Mathf.Sin(timer) * currentBobbingAmount * bobbingMultiplier;
+        float bobbingPositionY = Mathf.Sin(timer) * currentBobbingAmount * bobbingSprintMultiplier;
 
         // Adjust the local position of the camera for bobbing
         Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, bobbingPositionY, Camera.main.transform.localPosition.z);

@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 2833310616495665498}
   - component: {fileID: 7001324629525164836}
   - component: {fileID: 3100491544056240292}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PathGateLeaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
