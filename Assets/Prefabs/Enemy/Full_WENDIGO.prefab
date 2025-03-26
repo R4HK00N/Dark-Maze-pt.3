@@ -6344,8 +6344,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6093611967588943780}
-  - component: {fileID: 6939491355399147595}
   - component: {fileID: 8471017343983687777}
+  - component: {fileID: 4187148974987898025}
   - component: {fileID: 7447385191212696921}
   - component: {fileID: -8634603407108089535}
   - component: {fileID: 2635445444055375460}
@@ -6369,6 +6369,7 @@ Transform:
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 6663497701408078269}
   - {fileID: 5910517401567565249}
   - {fileID: 2430181605432756449}
   - {fileID: 4842084740070308682}
@@ -6377,32 +6378,6 @@ Transform:
   - {fileID: 1190257452932446947}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6939491355399147595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335020429366672103}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b252aa741c915d49b69f33c242b890a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 7447385191212696921}
-  player: {fileID: 0}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
-  jumpscareRange: 2
-  jumpscareDuration: 3
-  enemyStompingSFX: {fileID: -8634603407108089535}
-  pitchDelay: 1
-  minPitch: 0.8
-  maxPitch: 1.2
-  followDistance: 30
-  wanderRange: 20
-  wanderInterval: 7
 --- !u!114 &8471017343983687777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6421,6 +6396,31 @@ MonoBehaviour:
   wanderRadius: 40
   cornerSlowdownDistance: 3
   minSpeed: 3
+  baseSpeed: 7
+--- !u!114 &4187148974987898025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335020429366672103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf8fbca1e444aa49b26ed41de800eda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpscareLookAt: {fileID: 7451451465476512398}
+  enemy: {fileID: 7447385191212696921}
+  player: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 64
+  jumpscareRange: 2
+  jumpscareDuration: 3
+  enemyStompingSFX: {fileID: -8634603407108089535}
+  pitchDelay: 1
+  minPitch: 0.8
+  maxPitch: 1.2
 --- !u!195 &7447385191212696921
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -10627,6 +10627,37 @@ Transform:
   m_Children:
   - {fileID: 4169198630385895067}
   m_Father: {fileID: 9019061202425641262}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7451451465476512398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6663497701408078269}
+  m_Layer: 0
+  m_Name: lookAt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6663497701408078269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7451451465476512398}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.48, y: 6.24, z: 4.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6093611967588943780}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7458645492810245116
 GameObject:
