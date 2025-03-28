@@ -106,7 +106,7 @@ Material:
     - _SupportDecals: 1
     - _SurfaceType: 1
     - _TerrainOffset: 0
-    - _TerrainSize: 1000
+    - _TerrainSize: 0
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
@@ -116,20 +116,20 @@ Material:
     - _TransparentZWrite: 0
     - _USETERRAINCOLOR: 0
     - _UseShadowThreshold: 0
-    - _WindHeight: 0.5
-    - _WindIntensity: 0.2
+    - _WindHeight: 0.2
+    - _WindIntensity: 0.02
     - _WindNoiseSpeed: 0.1
-    - _WindSpeed: 0.2
+    - _WindSpeed: 0.02
     - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 3
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
-    - _BottomColor: {r: 0, g: 0, b: 0, a: 0}
+    - _BottomColor: {r: 0.055792823, g: 0.19496846, b: 0.06670856, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _FarColor: {r: 0, g: 0, b: 0, a: 0}
-    - _NearColor: {r: 1, g: 0, b: 0.8335519, a: 0}
+    - _FarColor: {r: 1, g: 0, b: 0.9641285, a: 0}
+    - _NearColor: {r: 0.16214824, g: 1, b: 0, a: 0}
     - _NearFarRange: {r: 10, g: 25, b: 0, a: 0}
     - _ShadowColor: {r: 0.003921569, g: 0.090196066, b: 0.25098038, a: 0}
     - _WindNoiseContrast: {r: 0, g: 1, b: 0, a: 0}
