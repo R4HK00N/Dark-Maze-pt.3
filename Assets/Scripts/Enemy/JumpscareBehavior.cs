@@ -13,17 +13,31 @@ public class JumpscareBehavior : MonoBehaviour
     public float jumpscareRange;
     public float jumpscareDuration;
     bool inJumpscareRange;
+    public bool canJumpScare = true;
 
+    GameObject deathScreen;
+    GameObject phone;
+    GameObject ingameUI;
+    public Animator jumpscareAnimator;
+    public SkinnedMeshRenderer[] monsterParts;
+    public GameObject jumpscareModel;
     public AudioSource enemyStompingSFX;
     public float pitchDelay;
     public float minPitch;
     public float maxPitch;
 
     Shake shake;
+    GameObject camera;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        jumpscareModel = player.transform.Find("Full_WENDIGO").gameObject;
+        jumpscareAnimator = player.GetComponent<Animator>();
+        ingameUI = GameObject.FindGameObjectWithTag("IngameUI");
+        phone = ingameUI.transform.Find("PhoneMap").gameObject;
+        deathScreen = ingameUI.transform.Find("DeathScreen").gameObject;
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
     void Update()
     {
@@ -31,18 +45,31 @@ public class JumpscareBehavior : MonoBehaviour
 
         StartCoroutine(PitchChange(pitchDelay));
 
-        inJumpscareRange = Physics.CheckSphere(transform.position, jumpscareRange, whatIsPlayer);
+        if(canJumpScare)
+            inJumpscareRange = Physics.CheckSphere(transform.position, jumpscareRange, whatIsPlayer);
 
         if (inJumpscareRange)
         {
+            canJumpScare = false;
+            jumpscareModel.SetActive(true);
+            phone.SetActive(false);
+
+            foreach(SkinnedMeshRenderer renderer in monsterParts)
+            {
+                renderer.enabled = false;
+            }
+
             enemyStompingSFX.Stop();
 
-            Camera.main.transform.LookAt(jumpscareLookAt.transform.position);
-            enemy.enabled = false;
+            //Camera.main.transform.LookAt(jumpscareLookAt.transform.position);
             player.GetComponent<Movement>().enabled = false;
 
             shake = player.GetComponentInChildren<Shake>();
             shake.canShake = false;
+
+            camera.SetActive(false);
+
+            jumpscareAnimator.SetInteger("Jumpscare", 1);
 
             //Ienumerator voor alles wat na jumpscare gebeurt
             StartCoroutine(JumpscareEnd(jumpscareDuration));
@@ -54,7 +81,9 @@ public class JumpscareBehavior : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
-        SceneManager.LoadScene("MainScene");
+        deathScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        //SceneManager.LoadScene("MainScene");
     }
 
     IEnumerator PitchChange(float time)

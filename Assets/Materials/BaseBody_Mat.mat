@@ -23,11 +23,11 @@ Material:
   m_CustomRenderQueue: 2225
   stringTagMap: {}
   disabledShaderPasses:
-  - TransparentDepthPrepass
-  - TransparentDepthPostpass
+  - MOTIONVECTORS
   - TransparentBackface
   - RayTracingPrepass
-  - MOTIONVECTORS
+  - TransparentDepthPostpass
+  - TransparentDepthPrepass
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -204,8 +204,8 @@ Material:
     - _ReceivesSSRTransparent: 0
     - _RefractionModel: 0
     - _Smoothness: 0
-    - _SmoothnessRemapMax: 1
-    - _SmoothnessRemapMin: 0.6536411
+    - _SmoothnessRemapMax: 0.6881497
+    - _SmoothnessRemapMin: 0.4332669
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
     - _SpecularOcclusionMode: 1
@@ -229,7 +229,7 @@ Material:
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
-    - _TransparentDepthPrepassEnable: 0
+    - _TransparentDepthPrepassEnable: 1
     - _TransparentSortPriority: 0
     - _TransparentWritingMotionVec: 0
     - _TransparentZWrite: 0
@@ -240,7 +240,7 @@ Material:
     - _UseShadowThreshold: 0
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
-    - _ZTestTransparent: 4
+    - _ZTestTransparent: 8
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

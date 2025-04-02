@@ -116,9 +116,9 @@ Material:
     - _TransparentZWrite: 0
     - _USETERRAINCOLOR: 0
     - _UseShadowThreshold: 0
-    - _WindHeight: 0.2
+    - _WindHeight: 0.1
     - _WindIntensity: 0.02
-    - _WindNoiseSpeed: 0.1
+    - _WindNoiseSpeed: -2
     - _WindSpeed: 0.02
     - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 3
