@@ -39,6 +39,12 @@ public class GameManager : MonoBehaviour
         foreach (GameObject monster in monsters)
         {
             monster.GetComponent<MonsterAI>().enabled = false;
+
+            foreach (AudioSource audio in monsterAudio)
+            {
+                audio.Stop();
+            }
+
         }
     }
 }

@@ -130,8 +130,6 @@ public class Settings : MonoBehaviour
         // options.Reverse();
         _resDropDown.AddOptions(options);
         _resDropDown.RefreshShownValue();
-
-        SetScreenOptions(0);
     }
 
     public void SetResolution(int index)
@@ -151,26 +149,9 @@ public class Settings : MonoBehaviour
     #endregion
 
     #region Fullscreen
-    public void SetScreenOptions(int index)
+    public void SetFullscreen(bool isFullscreen)
     {
-        switch (index)
-        {
-            case 0:
-                {
-                    FullScreen();
-                }
-                break;
-            case 1:
-                {
-                    Borderless();
-                }
-                break;
-            case 2:
-                {
-                    Windowed();
-                }
-                break;
-        }
+        Screen.fullScreen = isFullscreen;
     }
 
     void FullScreen()
