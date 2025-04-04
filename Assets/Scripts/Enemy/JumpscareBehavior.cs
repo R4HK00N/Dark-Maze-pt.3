@@ -14,7 +14,6 @@ public class JumpscareBehavior : MonoBehaviour
     public float jumpscareDuration;
     bool inJumpscareRange;
     public bool canJumpScare = true;
-    bool canSeePlayer;
 
     GameObject deathScreen;
     GameObject phone;
@@ -46,14 +45,7 @@ public class JumpscareBehavior : MonoBehaviour
 
         StartCoroutine(PitchChange(pitchDelay));
 
-        RaycastHit hit;
-
-        if (Physics.Raycast(transform.position, transform.forward, out hit, jumpscareRange, whatIsPlayer))
-            canSeePlayer = true;
-        else
-            canSeePlayer = false;
-
-        if (canJumpScare && canSeePlayer)
+        if (canJumpScare)
             inJumpscareRange = Physics.CheckSphere(transform.position, jumpscareRange, whatIsPlayer);
 
         if (inJumpscareRange)

@@ -34,4 +34,11 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    public void StopEnemies()
+    {
+        foreach (GameObject monster in monsters)
+        {
+            monster.GetComponent<MonsterAI>().enabled = false;
+        }
+    }
 }

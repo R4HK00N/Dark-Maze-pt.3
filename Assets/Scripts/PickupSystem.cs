@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PickupSystem : MonoBehaviour
 {
+    public GameObject endTrigger;
     public TMP_Text gemCountText;
     public int gemAmount;
     public void Update()
@@ -12,5 +13,10 @@ public class PickupSystem : MonoBehaviour
         gemAmount = gameObject.transform.childCount;
 
         gemCountText.text = gemAmount.ToString();
+
+        if(gemAmount == 0)
+        {
+            endTrigger.SetActive(true);
+        }
     }
 }
