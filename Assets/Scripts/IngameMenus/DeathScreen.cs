@@ -12,5 +12,6 @@ public class DeathScreen : MonoBehaviour
     public void MainMenuButton()
     {
         SceneManager.LoadScene("MainMenu");
+        PlayerPrefs.SetInt("introbeenplayed", 0);
     }
 }

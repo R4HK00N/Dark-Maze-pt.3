@@ -14,6 +14,7 @@ public class JumpscareBehavior : MonoBehaviour
     public float jumpscareDuration;
     bool inJumpscareRange;
     public bool canJumpScare = true;
+    bool canSeePlayer;
 
     GameObject deathScreen;
     GameObject phone;
@@ -45,7 +46,14 @@ public class JumpscareBehavior : MonoBehaviour
 
         StartCoroutine(PitchChange(pitchDelay));
 
-        if(canJumpScare)
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit, jumpscareRange, whatIsPlayer))
+            canSeePlayer = true;
+        else
+            canSeePlayer = false;
+
+        if (canJumpScare && canSeePlayer)
             inJumpscareRange = Physics.CheckSphere(transform.position, jumpscareRange, whatIsPlayer);
 
         if (inJumpscareRange)
@@ -59,10 +67,13 @@ public class JumpscareBehavior : MonoBehaviour
                 renderer.enabled = false;
             }
 
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
             enemyStompingSFX.Stop();
 
-            //Camera.main.transform.LookAt(jumpscareLookAt.transform.position);
+            camera.transform.LookAt(jumpscareLookAt.transform.position);
             player.GetComponent<Movement>().enabled = false;
+            
 
             shake = player.GetComponentInChildren<Shake>();
             shake.canShake = false;
