@@ -11,9 +11,13 @@ public class EndTrigger : MonoBehaviour
     {
         if(other.transform.tag == "Player")
         {
+            winscreen.SetActive(true);
+
             player.GetComponent<Movement>().enabled = false;
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             manager.StopEnemies();
+
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }

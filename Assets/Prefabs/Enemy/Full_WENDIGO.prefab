@@ -6420,7 +6420,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   jumpscareRange: 2
-  jumpscareDuration: 2.2
+  jumpscareDuration: 0.7
   canJumpScare: 1
   jumpscareAnimator: {fileID: 0}
   monsterParts:
